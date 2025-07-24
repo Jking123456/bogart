@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta charset="UTF-8">
   <title>Free SMS Sender</title>
   <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
@@ -56,7 +57,7 @@
     <textarea id="text" rows="4" placeholder="Enter your message..." required></textarea>
 
     <!-- Cloudflare Turnstile Widget -->
-    <div class="cf-turnstile" data-sitekey="0x4AAAAAABmUbhONK_qZ1O9h" data-callback="onTurnstileSuccess"></div>
+    <div class="cf-turnstile" data-sitekey="0x4AAAAAABmSiyVBcONtYn10" data-callback="onTurnstileSuccess"></div>
 
     <button onclick="sendSMS()">Send SMS</button>
     <div class="message" id="responseMsg"></div>
