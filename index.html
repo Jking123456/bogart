@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Free SMS Sender</title>
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f2f2f2;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .container {
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+      width: 100%;
+      max-width: 400px;
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    input, textarea, button {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+    }
+    button {
+      background-color: #007bff;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    .message {
+      margin-top: 15px;
+      text-align: center;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Free SMS Sender</h2>
+    <input type="text" id="number" placeholder="Enter phone number (with country code)" required>
+    <textarea id="text" rows="4" placeholder="Enter your message..." required></textarea>
+
+    <!-- Cloudflare Turnstile Widget -->
+    <div class="cf-turnstile" data-sitekey="YOUR_SITE_KEY_HERE" data-callback="onTurnstileSuccess"></div>
+
+    <button onclick="sendSMS()">Send SMS</button>
+    <div class="message" id="responseMsg"></div>
+  </div>
+
+  <script>
+    let turnstileToken = "";
+
+    function onTurnstileSuccess(token) {
+      turnstileToken = token;
+    }
+
+    async function sendSMS() {
+      const number = document.getElementById("number").value.trim();
+      const text = document.getElementById("text").value.trim();
+      const msg = document.getElementById("responseMsg");
+
+      if (!number || !text || !turnstileToken) {
+        msg.style.color = "red";
+        msg.textContent = "Please fill all fields and complete the CAPTCHA.";
+        return;
+      }
+
+      try {
+        const url = `https://freemessagetext.vercel.app/api/send?number=${encodeURIComponent(number)}&text=${encodeURIComponent(text)}&cf-turnstile-token=${turnstileToken}`;
+        const res = await fetch(url);
+        const data = await res.json();
+
+        if (data.success) {
+          msg.style.color = "green";
+          msg.textContent = "✅ SMS sent successfully!";
+        } else {
+          msg.style.color = "red";
+          msg.textContent = "❌ Failed to send SMS: " + (data.message || "Unknown error");
+        }
+      } catch (err) {
+        msg.style.color = "red";
+        msg.textContent = "❌ Error: " + err.message;
+      }
+    }
+  </script>
+</body>
+</html>
+
