@@ -85,12 +85,25 @@
         const res = await fetch(url);
         const data = await res.json();
 
-        if (data.success) {
+        if (data.success && data.response?.success === 1) {
+          const {
+            message,
+            totalsent,
+            limit,
+            sendDelay,
+            adfreq
+          } = data.response;
+
           msg.style.color = "green";
-          msg.textContent = "✅ SMS sent successfully!";
+          msg.innerHTML = `
+            ✅ ${message}<br>
+            🔢 Total Sent: ${totalsent} / ${limit}<br>
+            🕒 Send Delay: ${sendDelay} sec<br>
+            📢 Ad Frequency: ${adfreq}
+          `;
         } else {
           msg.style.color = "red";
-          msg.textContent = "❌ Failed to send SMS: " + (data.message || "Unknown error");
+          msg.textContent = "❌ Failed: " + (data.response?.message || "Unknown error");
         }
       } catch (err) {
         msg.style.color = "red";
