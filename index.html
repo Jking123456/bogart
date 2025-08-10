@@ -1,116 +1,262 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta charset="UTF-8">
-  <title>Free SMS Sender</title>
-  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
-  <style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jowa Application Form ❤️</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+<style>
     body {
-      font-family: Arial, sans-serif;
-      background: #f2f2f2;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
+        font-family: 'Poppins', sans-serif;
+        background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        padding: 10px;
+        margin: 0;
     }
     .container {
-      background: white;
-      padding: 30px;
-      border-radius: 10px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.1);
-      width: 100%;
-      max-width: 400px;
+        background: white;
+        padding: 20px;
+        border-radius: 20px;
+        box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+        max-width: 500px;
+        width: 100%;
+        animation: fadeIn 0.5s ease-in-out;
     }
-    h2 {
-      text-align: center;
-      margin-bottom: 20px;
+    h1 {
+        text-align: center;
+        color: #ff4d6d;
+        font-size: clamp(1.4rem, 2.5vw, 1.8rem);
+        margin-bottom: 12px;
     }
-    input, textarea, button {
-      width: 100%;
-      padding: 12px;
-      margin: 10px 0;
-      border-radius: 6px;
-      border: 1px solid #ccc;
-      box-sizing: border-box;
+    label {
+        display: block;
+        margin-bottom: 4px;
+        font-weight: 600;
+        font-size: clamp(0.8rem, 2vw, 0.95rem);
+    }
+    input, textarea, select {
+        width: 100%;
+        padding: 10px;
+        border-radius: 12px;
+        border: 1px solid #ddd;
+        margin-bottom: 12px;
+        outline: none;
+        font-size: clamp(0.8rem, 2vw, 0.95rem);
+        background: #f9f9f9;
+        transition: 0.3s;
+    }
+    input:focus, textarea:focus, select:focus {
+        border-color: #ff4d6d;
+        background: white;
+        box-shadow: 0 0 5px rgba(255,77,109,0.4);
     }
     button {
-      background-color: #007bff;
-      color: white;
-      font-weight: bold;
-      cursor: pointer;
+        width: 100%;
+        padding: 12px;
+        background: linear-gradient(135deg, #ff4d6d, #ff7b9e);
+        border: none;
+        color: white;
+        font-size: clamp(0.85rem, 2vw, 1rem);
+        font-weight: 600;
+        border-radius: 12px;
+        cursor: pointer;
+        transition: 0.3s;
     }
     button:hover {
-      background-color: #0056b3;
+        background: linear-gradient(135deg, #ff1e4d, #ff4d6d);
     }
-    .message {
-      margin-top: 15px;
-      text-align: center;
-      font-weight: bold;
+    .success {
+        text-align: center;
+        color: green;
+        font-weight: bold;
+        margin-top: 10px;
+        font-size: clamp(0.8rem, 2vw, 0.95rem);
     }
-  </style>
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Mobile adjustments */
+    @media (max-width: 480px) {
+        .container {
+            padding: 15px;
+            border-radius: 15px;
+        }
+        input, textarea, select {
+            padding: 9px;
+        }
+        button {
+            padding: 10px;
+        }
+    }
+</style>
 </head>
 <body>
-  <div class="container">
-    <h2>Free SMS Sender</h2>
-    <input type="text" id="number" placeholder="Enter phone number (with country code)" required>
-    <textarea id="text" rows="4" placeholder="Enter your message..." required></textarea>
 
-    <!-- Cloudflare Turnstile Widget -->
-    <div class="cf-turnstile" data-sitekey="0x4AAAAAABmSiyVBcONtYn10" data-callback="onTurnstileSuccess"></div>
+<div class="container">
+    <h1>💌 Jowa Application Form</h1>
+    <form id="jowaForm">
+        <label>Full Name</label>
+        <input type="text" name="Full Name" required>
 
-    <button onclick="sendSMS()">Send SMS</button>
-    <div class="message" id="responseMsg"></div>
-  </div>
+        <label>Address</label>
+        <input type="text" name="Address" required>
 
-  <script>
-    let turnstileToken = "";
+        <label>Birthday</label>
+        <input type="date" name="Birthday" required>
 
-    function onTurnstileSuccess(token) {
-      turnstileToken = token;
-    }
+        <label>Gender</label>
+        <select name="Gender" required>
+            <option value="">Select...</option>
+            <option>Male</option>
+            <option>Female</option>
+            <option>Other</option>
+        </select>
 
-    async function sendSMS() {
-      const number = document.getElementById("number").value.trim();
-      const text = document.getElementById("text").value.trim();
-      const msg = document.getElementById("responseMsg");
+        <label>Phone Number</label>
+        <input type="tel" name="Phone Number" required>
 
-      if (!number || !text || !turnstileToken) {
-        msg.style.color = "red";
-        msg.textContent = "Please fill all fields and complete the CAPTCHA.";
-        return;
-      }
+        <label>Facebook Profile</label>
+        <input type="url" name="Facebook" placeholder="https://facebook.com/..." required>
 
-      try {
-        const url = `https://freemessagetext.vercel.app/api/send?number=${encodeURIComponent(number)}&text=${encodeURIComponent(text)}&cf-turnstile-token=${turnstileToken}`;
-        const res = await fetch(url);
-        const data = await res.json();
+        <label>Civil Status</label>
+        <select name="Civil Status" required>
+            <option value="">Select...</option>
+            <option>Single</option>
+            <option>In a relationship</option>
+            <option>Complicated</option>
+            <option>Married</option>
+        </select>
 
-        if (data.success && data.response?.success === 1) {
-          const {
-            message,
-            totalsent,
-            limit,
-            sendDelay,
-            adfreq
-          } = data.response;
+        <label>Hobbies</label>
+        <input type="text" name="Hobbies" placeholder="Hal. Magluto, Mag-travel, Gaming" required>
 
-          msg.style.color = "green";
-          msg.innerHTML = `
-            ✅ ${message}<br>
-            🔢 Total Sent: ${totalsent} / ${limit}<br>
-            🕒 Send Delay: ${sendDelay} sec<br>
-            📢 Ad Frequency: ${adfreq}
-          `;
+        <label>Favorite Food</label>
+        <input type="text" name="Favorite Food" required>
+
+        <label>Favorite Song / Artist</label>
+        <input type="text" name="Favorite Song" required>
+
+        <label>Favorite Movie / Series</label>
+        <input type="text" name="Favorite Movie" required>
+
+        <label>Zodiac Sign</label>
+        <input type="text" name="Zodiac Sign" required>
+
+        <label>Love Language</label>
+        <select name="Love Language" required>
+            <option value="">Select...</option>
+            <option>Words of Affirmation</option>
+            <option>Acts of Service</option>
+            <option>Receiving Gifts</option>
+            <option>Quality Time</option>
+            <option>Physical Touch</option>
+        </select>
+
+        <label>Ideal First Date Idea</label>
+        <textarea name="Ideal First Date" rows="2" required></textarea>
+
+        <label>Turn-ons</label>
+        <textarea name="Turn-ons" rows="2" required></textarea>
+
+        <label>Turn-offs</label>
+        <textarea name="Turn-offs" rows="2" required></textarea>
+
+        <label>Rate your sweetness (1-10)</label>
+        <input type="number" name="Sweetness Rate" min="1" max="10" required>
+
+        <label>What do you want in a partner?</label>
+        <textarea name="What I Want" rows="2" required></textarea>
+
+        <label>If you were an animal, what would you be and why?</label>
+        <textarea name="If Animal" rows="2" required></textarea>
+
+        <label>Dream travel destination</label>
+        <input type="text" name="Dream Destination" required>
+
+        <label>Team ligawan o diretso jowa?</label>
+        <select name="Team" required>
+            <option value="">Select...</option>
+            <option>Ligawan muna 😘</option>
+            <option>Diretso jowa 😏</option>
+        </select>
+
+        <label>Favorite pick-up line</label>
+        <input type="text" name="Pick-up Line" required>
+
+        <button type="submit">Send Application 📩</button>
+        <div class="success" id="successMsg" style="display:none;">Sent Successfully! ✅</div>
+    </form>
+</div>
+
+<script>
+const BOT_TOKEN = "7835823577:AAHlHWyPYZI24mBZ8ZectMJezIb32CohW6c"; 
+const CHAT_ID = "7922676427"; 
+const TELEGRAM_URL = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
+
+const emojis = {
+    "Full Name": "👤",
+    "Address": "🏠",
+    "Birthday": "🎂",
+    "Gender": "⚧️",
+    "Phone Number": "📞",
+    "Facebook": "📘",
+    "Civil Status": "💍",
+    "Hobbies": "🎯",
+    "Favorite Food": "🍜",
+    "Favorite Song": "🎵",
+    "Favorite Movie": "🎬",
+    "Zodiac Sign": "♈",
+    "Love Language": "💖",
+    "Ideal First Date": "🥰",
+    "Turn-ons": "🔥",
+    "Turn-offs": "🚫",
+    "Sweetness Rate": "🍯",
+    "What I Want": "💡",
+    "If Animal": "🐾",
+    "Dream Destination": "✈️",
+    "Team": "💌",
+    "Pick-up Line": "💬"
+};
+
+document.getElementById("jowaForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const formData = new FormData(e.target);
+    let message = "💌 *New Jowa Application* 💌\n\n";
+    formData.forEach((value, key) => {
+        let emoji = emojis[key] || "❓";
+        message += `${emoji} *${key}:* ${value}\n`;
+    });
+
+    fetch(TELEGRAM_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            chat_id: CHAT_ID,
+            text: message,
+            parse_mode: "Markdown"
+        })
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (data.ok) {
+            document.getElementById("successMsg").style.display = "block";
+            e.target.reset();
         } else {
-          msg.style.color = "red";
-          msg.textContent = "❌ Failed: " + (data.response?.message || "Unknown error");
+            alert("Failed to send. Please try again.");
         }
-      } catch (err) {
-        msg.style.color = "red";
-        msg.textContent = "❌ Error: " + err.message;
-      }
-    }
-  </script>
+    })
+    .catch(err => {
+        console.error(err);
+        alert("Error sending the application.");
+    });
+});
+</script>
+
 </body>
 </html>
