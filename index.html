@@ -33,20 +33,29 @@
     }
     label {
         display: block;
-        margin-bottom: 4px;
+        margin-bottom: 6px;
         font-weight: 600;
-        font-size: clamp(0.8rem, 2vw, 0.95rem);
+        font-size: clamp(0.85rem, 2vw, 0.95rem);
     }
     input, textarea, select {
         width: 100%;
-        padding: 10px;
+        padding: 12px;
         border-radius: 12px;
         border: 1px solid #ddd;
-        margin-bottom: 12px;
+        margin-bottom: 16px;
         outline: none;
-        font-size: clamp(0.8rem, 2vw, 0.95rem);
+        font-size: clamp(0.85rem, 2vw, 1rem);
         background: #f9f9f9;
-        transition: 0.3s;
+        transition: all 0.3s ease;
+        box-sizing: border-box;
+    }
+    input::placeholder, textarea::placeholder {
+        color: #888;
+        opacity: 0.9;
+    }
+    textarea {
+        resize: none;
+        min-height: 60px;
     }
     input:focus, textarea:focus, select:focus {
         border-color: #ff4d6d;
@@ -59,7 +68,7 @@
         background: linear-gradient(135deg, #ff4d6d, #ff7b9e);
         border: none;
         color: white;
-        font-size: clamp(0.85rem, 2vw, 1rem);
+        font-size: clamp(0.9rem, 2vw, 1rem);
         font-weight: 600;
         border-radius: 12px;
         cursor: pointer;
@@ -73,7 +82,7 @@
         color: green;
         font-weight: bold;
         margin-top: 10px;
-        font-size: clamp(0.8rem, 2vw, 0.95rem);
+        font-size: clamp(0.85rem, 2vw, 0.95rem);
     }
     @keyframes fadeIn {
         from { opacity: 0; transform: translateY(20px); }
@@ -87,7 +96,7 @@
             border-radius: 15px;
         }
         input, textarea, select {
-            padding: 9px;
+            padding: 10px;
         }
         button {
             padding: 10px;
@@ -101,10 +110,10 @@
     <h1>💌 Jowa Application Form</h1>
     <form id="jowaForm">
         <label>Full Name</label>
-        <input type="text" name="Full Name" required>
+        <input type="text" name="Full Name" placeholder="Juan Dela Cruz" required>
 
         <label>Address</label>
-        <input type="text" name="Address" required>
+        <input type="text" name="Address" placeholder="123 Main St, Manila" required>
 
         <label>Birthday</label>
         <input type="date" name="Birthday" required>
@@ -118,7 +127,7 @@
         </select>
 
         <label>Phone Number</label>
-        <input type="tel" name="Phone Number" required>
+        <input type="tel" name="Phone Number" placeholder="09XXXXXXXXX" required>
 
         <label>Facebook Profile</label>
         <input type="url" name="Facebook" placeholder="https://facebook.com/..." required>
@@ -136,16 +145,16 @@
         <input type="text" name="Hobbies" placeholder="Hal. Magluto, Mag-travel, Gaming" required>
 
         <label>Favorite Food</label>
-        <input type="text" name="Favorite Food" required>
+        <input type="text" name="Favorite Food" placeholder="Adobo, Sinigang..." required>
 
         <label>Favorite Song / Artist</label>
-        <input type="text" name="Favorite Song" required>
+        <input type="text" name="Favorite Song" placeholder="Artist - Song Title" required>
 
         <label>Favorite Movie / Series</label>
-        <input type="text" name="Favorite Movie" required>
+        <input type="text" name="Favorite Movie" placeholder="Title" required>
 
         <label>Zodiac Sign</label>
-        <input type="text" name="Zodiac Sign" required>
+        <input type="text" name="Zodiac Sign" placeholder="Aries, Taurus..." required>
 
         <label>Love Language</label>
         <select name="Love Language" required>
@@ -158,25 +167,25 @@
         </select>
 
         <label>Ideal First Date Idea</label>
-        <textarea name="Ideal First Date" rows="2" required></textarea>
+        <textarea name="Ideal First Date" placeholder="Describe your idea..." required></textarea>
 
         <label>Turn-ons</label>
-        <textarea name="Turn-ons" rows="2" required></textarea>
+        <textarea name="Turn-ons" placeholder="What makes you attracted..." required></textarea>
 
         <label>Turn-offs</label>
-        <textarea name="Turn-offs" rows="2" required></textarea>
+        <textarea name="Turn-offs" placeholder="What turns you off..." required></textarea>
 
         <label>Rate your sweetness (1-10)</label>
         <input type="number" name="Sweetness Rate" min="1" max="10" required>
 
         <label>What do you want in a partner?</label>
-        <textarea name="What I Want" rows="2" required></textarea>
+        <textarea name="What I Want" placeholder="Describe qualities..." required></textarea>
 
         <label>If you were an animal, what would you be and why?</label>
-        <textarea name="If Animal" rows="2" required></textarea>
+        <textarea name="If Animal" placeholder="Explain your choice..." required></textarea>
 
         <label>Dream travel destination</label>
-        <input type="text" name="Dream Destination" required>
+        <input type="text" name="Dream Destination" placeholder="Paris, Japan..." required>
 
         <label>Team ligawan o diretso jowa?</label>
         <select name="Team" required>
@@ -186,7 +195,7 @@
         </select>
 
         <label>Favorite pick-up line</label>
-        <input type="text" name="Pick-up Line" required>
+        <input type="text" name="Pick-up Line" placeholder="Type here..." required>
 
         <button type="submit">Send Application 📩</button>
         <div class="success" id="successMsg" style="display:none;">Sent Successfully! ✅</div>
